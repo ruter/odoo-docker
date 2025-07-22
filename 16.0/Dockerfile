@@ -4,8 +4,8 @@ MAINTAINER Ruter <i@ruterly.com>
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
 # Generate locale C.UTF-8 for postgres and general locale data
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 # Retrieve the target architecture to install the correct wkhtmltopdf package
 ARG TARGETARCH
@@ -29,6 +29,7 @@ RUN apt-get update && \
         libldap2-dev \
         libmagic-dev \
         libpq-dev \
+        libsasl2-dev \
         libssl-dev \
         libxml2-dev \
         libxslt1-dev \
@@ -84,7 +85,7 @@ RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main' > /et
 RUN npm install -g rtlcss
 
 # Install Odoo
-ENV ODOO_VERSION 16.0
+ENV ODOO_VERSION=16.0
 RUN git clone --depth 1 --branch ${ODOO_VERSION} https://github.com/odoo/odoo.git /opt/odoo \
     && pip install --upgrade pip setuptools wheel \
     && pip install /opt/odoo
@@ -109,7 +110,7 @@ COPY ./odoo.conf /etc/odoo/
 EXPOSE 8069 8071 8072
 
 # Set the default config file
-ENV ODOO_RC /etc/odoo/odoo.conf
+ENV ODOO_RC=/etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
