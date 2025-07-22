@@ -29,6 +29,7 @@ RUN apt-get update && \
         libldap2-dev \
         libmagic-dev \
         libpq-dev \
+        libpq5 \
         libsasl2-dev \
         libssl-dev \
         libxml2-dev \
