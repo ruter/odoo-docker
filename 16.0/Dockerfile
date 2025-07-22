@@ -87,7 +87,6 @@ RUN npm install -g rtlcss
 ENV ODOO_VERSION 16.0
 RUN git clone --depth 1 --branch ${ODOO_VERSION} https://github.com/odoo/odoo.git /opt/odoo \
     && pip install --upgrade pip setuptools wheel \
-    && pip install -r /opt/odoo/requirements.txt \
     && pip install /opt/odoo
 
 # Install python dependencies
